@@ -2,13 +2,15 @@
 
 // create your App component here
 import React, {useState, useEffect} from "react";
+import HandleImage from "./HandleImage";
 
 
 
 export default function App(){
 
-    const [dogImage,setDogImage] = useState('')
+    const [dogImage,setDogImage] = useState("https://images.dog.ceo/breeds/bulldog-english/mami.jpg")
     const [isLoaded,setisLoaded] = useState(false)
+
 
 
     useEffect(() => {
@@ -16,22 +18,20 @@ export default function App(){
         fetch("https://dog.ceo/api/breeds/image/random")
         .then(response => response.json())
         .then(data => setDogImage(data.message))
+
+    
         
          setisLoaded(true)
         },[])
 
-       if (!isLoaded) return <p>Loading ...</p>
+
+
+       
 
         return(
             <div>
-            <img  src={dogImage} alt="A Random Dog"></img>
+                <p>{!isLoaded?"Loading...":""}</p>
+            <HandleImage dogImage={dogImage}/>
             </div>
         
-        )
-
-
-
-
-
-
-}
+        )}
