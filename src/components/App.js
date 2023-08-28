@@ -6,10 +6,10 @@ import HandleImage from "./HandleImage";
 
 
 
+
 export default function App(){
 
-    const [dogImage,setDogImage] = useState("https://images.dog.ceo/breeds/bulldog-english/mami.jpg")
-    const [isLoaded,setisLoaded] = useState(false)
+    const [dogImage,setDogImage] = useState(null)
 
 
 
@@ -21,8 +21,11 @@ export default function App(){
 
     
         
-         setisLoaded(true)
+        
         },[])
+
+        if(!dogImage) return <p>Loading...</p>
+
 
 
 
@@ -30,8 +33,7 @@ export default function App(){
 
         return(
             <div>
-                <p>{!isLoaded?"Loading...":""}</p>
+    
             <HandleImage dogImage={dogImage}/>
             </div>
-        
-        )}
+         )}
